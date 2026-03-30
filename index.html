@@ -1,288 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Love ❤️</title>
+    <title>Surprise!</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
-            font-family: 'Poppins', sans-serif;
-            overflow: auto;
-            background: linear-gradient(-45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            height: auto;
-            padding: 60px 20px;
-            display: block;
+            overflow: hidden;
+            background-color: #f2f2f2;
             position: relative;
-            cursor: none;
         }
-        
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        /* Floating hearts */
         .heart {
             position: absolute;
-            color: rgba(255,255,255,0.8);
-            font-size: 20px;
-            animation: float 6s infinite linear;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            transform: rotate(45deg);
+            animation: appear 2s infinite;
         }
-        
+        @keyframes appear {
+            0% {
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
         @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-        }
-        
-        /* Custom cursor */
-        .cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            background: rgba(255,255,255,0.8);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference;
-            transition: transform 0.1s ease;
-        }
-        
-        /* Main container */
-        .container {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.2);
-            animation: fadeInUp 2s ease-out;
-        }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 4rem;
-            color: white;
-            margin-bottom: 20px;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-        
-        @keyframes glow {
-            from { text-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.5); }
-            to { text-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 0 30px rgba(255,255,255,0.8); }
-        }
-        
-        .subtitle {
-            font-size: 1.5rem;
-            color: white;
-            margin-bottom: 40px;
-            opacity: 0.9;
-        }
-        
-        .photo-gallery {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 40px 0;
-            flex-wrap: wrap;
-        }
-        
-        .photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 20px;
-            object-fit: cover;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: none;
-        }
-        
-        .photo:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-        }
-        
-        .message {
-            font-size: 1.3rem;
-            color: white;
-            line-height: 1.6;
-            margin: 30px 0;
-            opacity: 0;
-            animation: fadeIn 1s ease-out forwards;
-        }
-        
-        .countdown {
-            font-size: 2rem;
-            color: white;
-            margin: 30px 0;
-            font-weight: 600;
-        }
-        
-        .cta-button {
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            cursor: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255,107,107,0.4);
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            margin: 20px;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(255,107,107,0.6);
-        }
-        
-        .hidden-message {
-            display: none;
-            font-size: 1.5rem;
-            color: #ff6b6b;
-            font-weight: 600;
-            animation: bounceIn 1s ease-out;
-        }
-        
-        @keyframes bounceIn {
-            0% { transform: scale(0.3); opacity: 0; }
-            50% { transform: scale(1.05); }
-            70% { transform: scale(0.9); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .photo-gallery { flex-direction: column; align-items: center; }
-            .photo { width: 120px; height: 120px; }
+            0% {
+                transform: translateY(100vh) rotate(45deg);
+            }
+            50% {
+                transform: translateY(-100vh) rotate(45deg);
+            }
+            100% {
+                transform: translateY(100vh) rotate(45deg);
+            }
         }
     </style>
 </head>
 <body>
-    <div class="cursor" id="cursor"></div>
-    
-    <div class="container">
-        <h1 id="title-heart">❤️ Manahil ❤️</h1>
-        <p class="subtitle">My forever love, my everything</p>
-        
-        <div class="photo-gallery">
-            <img src="https://i.ibb.co/1YrrxXFc/Screenshot-20260330-211844.jpg" class="photo">
-            <img src="https://i.ibb.co/vx2YfHKV/Screenshot-20260330-212025.jpg" class="photo">
-            <img src="https://i.ibb.co/XxcbvWKk/Snapchat-694948935.jpg" class="photo">
-            <img src="https://i.ibb.co/1YrrxXFc/Screenshot-20260330-211844.jpg" class="photo">
-        </div>
-        
-        <div class="message">
-            A day without your message feels like hell. You make my world brighter, my heart fuller, and my life complete. 
-            I fall in love with you more every single day. You're my sunshine, my safe place, my adventure partner and my future wifey.
-        </div>
-        
-        <div class="countdown" id="countdown">
-            Days until our relationship anniversary: <span id="days">???</span>
-        </div>
-        
-        <div class="message">
-            <strong>Click anywhere to reveal your surprise! 👇</strong>
-        </div>
-        
-        <button class="cta-button" onclick="revealSurprise()">click Here! 💖</button>
-        
-        <div class="hidden-message" id="surprise">
-            [Can you call me for this much effort]<br>
-        </div>
-    </div>
-
     <script>
-        // Custom cursor
-        const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        // Floating hearts
         function createHeart() {
             const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.innerHTML = '💖';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.classList.add('heart');
             document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 6000);
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            heart.style.left = `${x}px`;
+            heart.style.top = `${y}px`;
+            heart.style.animationDuration = `${Math.random() * 2 + 1}s`;
+            heart.style.animationName = 'float';
+            setTimeout(() => {
+                heart.remove();
+            }, 2000);
         }
-        
-        setInterval(createHeart, 300);
-
-        // Countdown (customize date below)
-        function updateCountdown() {
-            const targetDate = new Date('2026-12-13T17:30:00');
-            const now = new Date();
-            const diff = targetDate - now;
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById('days').textContent = days;
-        }
-        setInterval(updateCountdown, 86400000);
-        updateCountdown();
-
-        // Surprise reveal
-        function revealSurprise() {
-            document.querySelector('.cta-button').style.display = 'none';
-            document.getElementById('surprise').style.display = 'block';
-            
-            for (let i = 0; i < 100; i++) {
-                setTimeout(() => {
-                    createHeart();
-                }, i * 50);
-            }
-        }
-
-        // Staggered message animations
-        const messages = document.querySelectorAll('.message');
-        messages.forEach((msg, index) => {
-            msg.style.animationDelay = `${index * 0.5}s`;
-        });
-
-        // Click anywhere for magic
-        document.addEventListener('click', (e) => {
-            if (e.target.tagName !== 'BUTTON' && !document.getElementById('surprise').style.display) {
-                revealSurprise();
-            }
-        });
-
-        // **Title hearts animation (cute pulsing effect)**
-        const title = document.getElementById('title-heart');
-        let scaleUp = true;
-        setInterval(() => {
-            if(scaleUp) {
-                title.style.transform = 'scale(1.1) rotate(5deg)';
-            } else {
-                title.style.transform = 'scale(1) rotate(0deg)';
-            }
-            scaleUp = !scaleUp;
-        }, 800);
+        setInterval(createHeart, 500);
     </script>
 </body>
 </html>
